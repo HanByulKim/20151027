@@ -5,10 +5,8 @@ class TimelineController < ApplicationController
         @blogs=Blog.all.reverse
         # @myblogs = Blog.where(user_id: current_user.id)
     end
-    
-    def show
-        @shows=Blog.all
-        redirect_to :idpart
+    def trivial
+        @shows=Blog.where(user_id: params[:sel_user])
     end
     
     def write

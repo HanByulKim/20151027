@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  get 'rm/idtimeline'
+
   devise_for :users
   root 'timeline#index'
+  post '/idpart' => 'timeline#trivial'
+ # get '/idreg' => 'idtimeline#designate'
   post '/write' =>'timeline#write'
   post '/comment' => 'timeline#comment'
   # The priority is based upon order of creation: first created -> highest priority.

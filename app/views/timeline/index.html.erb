@@ -34,4 +34,14 @@
         </ol>
     </li>
     <% end %>
+    
+    
 </ul>
+<% @blogs.each do |b| %>
+    <li>
+      <%= form_tag '/idpart' do %>
+        <input type="hidden" name="sel_user" value="<%=b.id%>">
+        <input type="submit" value=<%=b.user.email%>>
+        <% end %>
+    </li>
+    <% end %>
