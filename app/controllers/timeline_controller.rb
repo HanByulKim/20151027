@@ -14,8 +14,34 @@ class TimelineController < ApplicationController
         redirect_to :root
     end
     
+    def ddel
+        de=Blog.find(params[:blog_iid])
+        de.delete
+        redirect_to :root
+    end
+    
+    def revp
+        temp = Blog.find(params[:blog_id])
+        temp.content = params[:revpost]
+        temp.save
+        redirect_to :root
+    end
+    
     def comment
         Comment.create(user_id: current_user.id, blog_id: params[:blog_id], msg: params[:comment])
+        redirect_to :root
+    end
+    
+    def comrevp
+        tempc = Comment.find(params[:comm_id])
+        tempc.msg = params[:revmsg]
+        tempc.save
+        redirect_to :root
+    end
+    
+    def comddel
+        dec=Comment.find(params[:comm_iid])
+        dec.delete
         redirect_to :root
     end
 end

@@ -7,6 +7,10 @@ Rails.application.routes.draw do
  # get '/idreg' => 'idtimeline#designate'
   post '/write' =>'timeline#write'
   post '/comment' => 'timeline#comment'
+  post '/rep'=>'timeline#revp'
+  post '/comrep'=>'timeline#comrevp'
+  post '/del'=>'timeline#ddel'
+  post '/comdel'=>'timeline#comddel'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

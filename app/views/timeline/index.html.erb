@@ -19,6 +19,8 @@
     
         <%=form_tag '/comment', class: "form-inline" do %> <!-- form tag 보안 -->
         <input type="hidden" name="blog_id" value="<%=b.id%>"> <!-- 어느 글의 댓글인지? -->
+        
+        
         <div class ="form-group">
         <input type="text" name="comment" class="form-control">
             
@@ -27,16 +29,45 @@
         <input type="submit" class="btn btn-primary">
         </div>
         <% end %>
+        <%=form_tag '/rep', class: "form-inline" do %>
+        <div class ="form-group">
+        <input type="hidden" name="blog_id" value="<%=b.id%>">
+        <input type="text" name="revpost" class="form-control" value="<%=b.content%>">
+        </div>
+        <div class="form-group">
+        <button type="submit" class="btn btn-warning"> 수정 </button>
+        </div>
+        <% end %>
+        <%=form_tag '/del', class: "form-inline" do %>
+        <div class="form-group">
+        <input type="hidden" name="blog_iid" value="<%=b.id%>">
+        <button type="submit" class="btn btn-danger"> 삭제 </button>
+        </div>
+        <% end %>
         <ol>
         <% b.comments.each do |c| %>
-        <li><%= c.user.email %> : <%=c.msg%></li>
+        <li><%= c.user.email %> : <%=c.msg%>  </li>
+        <%=form_tag '/comrep', class: "form-inline" do %>
+        <div class ="form-group">
+        <input type="hidden" name="comm_id" value="<%=c.id%>">
+        <input type="text" name="revmsg" class="form-control" value="<%=c.msg%>">
+        </div>
+        <div class="form-group">
+        <button type="submit" class="btn btn-warning"> 댓글수정 </button>
+        </div>
+        <% end %>
+        <%=form_tag '/comdel', class: "form-inline" do %>
+        <div class="form-group">
+        <input type="hidden" name="comm_iid" value="<%=c.id%>">
+        <button type="submit" class="btn btn-danger"> 댓글삭제 </button>
+        </div>
+        <% end %>
         <%end%>
         </ol>
     </li>
     <% end %>
-    
-    
 </ul>
+
 <% @blogs.each do |b| %>
     <li>
       <%= form_tag '/idpart' do %>
@@ -44,4 +75,4 @@
         <input type="submit" value=<%=b.user.email%>>
         <% end %>
     </li>
-    <% end %>
+<% end %>
